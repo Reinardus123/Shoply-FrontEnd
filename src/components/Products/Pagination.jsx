@@ -1,18 +1,18 @@
-function Pagination({page, setPage, totalPage}){
+function Pagination ({page, setPage, totalPage}){
 
     return (
-        
         <div className="flex justify-end gap-2 mt-6">
             <button
                 disabled={page === 1}
                 onClick={() => setPage(page-1)}
-                 className="px-3 py-2 border rounded disabled:opacity-50 cursor-pointer"
+               className="px-3 py-2 border rounded disabled:opacity-50 cursor-pointer"
             >
                 Prev
+
             </button>
 
             {
-                [...Array(totalPage)].map((_, index) => (
+               [...Array(totalPage)].map((_, index) => (
                     <button
                         key={index}
                         onClick={() => setPage(index + 1)}
@@ -23,16 +23,15 @@ function Pagination({page, setPage, totalPage}){
                 ))
             }
 
-            <button 
+            <button
                 disabled={page === totalPage}
                 onClick={() => setPage(page + 1)}
                 className="px-3 py-2 border rounded disabled:opacity-50 cursor-pointer"
             >
-                Next
+                    Next
             </button>
         </div>
-
-    );
+    )
 }
 
-export default Pagination;
+export default Pagination

@@ -17,7 +17,7 @@ function ProductSection() {
         const response = await api.get(
           "/products"
       ); 
-      setProducts(response.data);
+      setProducts(response.data.products);
       console.log(response.data);
      
       

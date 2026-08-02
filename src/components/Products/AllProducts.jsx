@@ -2,17 +2,22 @@ import Navbar from "../HomePage/Navbar";
 import Footer from "../HomePage/Footer";
 import { useState, useEffect } from "react";
 import api from "../../api/api";
-import ProductCard from "../HomePage/ProductCard";
+import ProductCard from "./ProductCard";
+import Pagination from "./Pagination";
 
 function AllProducts(){
     const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [searchCategory, setSearchCategory] = useState("");
     const [categories, setCategories] = useState([]);
+    const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
+
+    const limit = 10;
 
     useEffect(() => {
         getAllProducts();
-    },[]);
+    },[page, limit, selectedCategory]);
 
     useEffect(() => {
         fetchCategories();
@@ -22,8 +27,16 @@ function AllProducts(){
     async function getAllProducts(){
         try{
 
-            const response = await api.get("/products");
-            setProducts(response.data);
+            const response = await api.get("/products",{
+                params:{
+                    limit, 
+                    page,
+                    category: selectedCategory
+                }
+            });
+            console.log(response.data.length);
+            setProducts(response.data.products);
+            setTotalPage(response.data.totalPage);
 
         } catch(error){
             console.log(error);
@@ -76,12 +89,7 @@ function AllProducts(){
     //     ...new Set(products.map((product) => product.categoryname)),
     // ];
 
-    const filteredProducts = 
-        selectedCategory === "All"
-            ? products
-            : products.filter(
-                (product) => product.categoryname === selectedCategory
-            );
+    const filteredProducts = products;
 
     const filteredCategories = categories.filter((category) => 
         category.categoryname
@@ -146,7 +154,7 @@ function AllProducts(){
                         </span>
                     </div>
 
-                    {filteredProducts < 1 ? (
+                    {filteredProducts.length === 0 ? (
 
                     
                     
@@ -173,7 +181,14 @@ function AllProducts(){
                     )
                     
                     }
+                     <Pagination
+                        page={page}
+                        totalPage={totalPage}
+                        setPage={setPage}
+                    />
                 </div>
+
+                   
             </div>
         </div>
 
