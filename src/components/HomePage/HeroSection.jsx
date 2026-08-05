@@ -28,7 +28,7 @@ function HeroSection() {
   }
 
   return (
-    <section className="px-10 mt-8 transition">
+    <section className=" mt-8 transition max-w-[1600px] mx-auto px-6">
       <div
         className={`rounded-3xl h-[450px] flex items-center justify-between px-20 relative overflow-hidden transition-all duration-300 
           ${animate ? "opacity-0 translate-x-10" : "opacity-100 translate-x-0"}`}

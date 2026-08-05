@@ -4,7 +4,7 @@ import FeatureCard from "./FeatureCard";
 
 function Feature() {
   return (
-    <section className="px-10 mt-12">
+    <section className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 mt-12">
       <div className="bg-[#faf8ff] border border-gray-100 rounded-xl flex justidy-between divide-x divide-gray-200">
         {features.map((feature) => (
           <FeatureCard

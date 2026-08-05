@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {User, Mail, Lock, Eye, ShoppingBag, Truck, ShieldCheck, BadgeCheck, Phone} from "lucide-react";
+import {User, Mail, Lock, Eye, EyeClosed, ShoppingBag, Truck, ShieldCheck, BadgeCheck, Phone} from "lucide-react";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 import api from "../../api/api";
@@ -18,6 +18,9 @@ function register(){
         confirmPassword: "",
         address: "",
     });
+
+    const [visible, setVisible] = useState(false);
+    const [confirmVisible, setConfirmVisible] = useState(false);
 
 
     const navigate = useNavigate();
@@ -285,18 +288,43 @@ function register(){
                                     <label className="block font-medium mb-2">
                                         Password
                                     </label>
+                                    
                                     <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
-                                        <input 
-                                        type="password"
-                                        name ="password" 
-                                        placeholder="Create a password"
-                                        className="w-full outline-none"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        />
-                                        <Lock size={18} className="text-gray-400"/>
-                                        <Eye size={18} className="text-gray-400 cursor-pointer"/>
+
+                                        {!visible ? (
+                                        
+                                        <>
+                                            <input 
+                                                type="password"
+                                                name ="password" 
+                                                placeholder="Create a password"
+                                                className="w-full outline-none"
+                                                value={formData.password}
+                                                onChange={handleChange}
+                                                />
+                                                <Lock size={18} className="text-gray-400"/>
+                                                <EyeClosed size={18} className="text-gray-400 cursor-pointer" onClick={() => setVisible(true)}
+                                            />
+                                        </>
+
+                                        ) : (
+                                                <>
+                                            <input 
+                                                type="text"
+                                                name ="password" 
+                                                placeholder="Create a password"
+                                                className="w-full outline-none"
+                                                value={formData.password}
+                                                onChange={handleChange}
+                                                />
+                                                <Lock size={18} className="text-gray-400"/>
+                                                <Eye size={18} className="text-gray-400 cursor-pointer" onClick={() => setVisible(false)}
+                                            />
+                                        </>
+                                        )}
+                                        
                                     </div>
+
                                 </div>
 
                                 <div>
@@ -305,16 +333,38 @@ function register(){
                                     </label>
 
                                     <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
-                                        <input 
-                                        type="password" 
-                                        name="confirmPassword"
-                                        placeholder="Confirm your password"
-                                        className="w-full outline-none"
-                                        value={formData.confirmPassword}
-                                        onChange={handleChange}
-                                        />
-                                        <Lock size={18} className="text-gray-400 cursor-pointer"/>
-                                        <Eye size={18} className="text-gray-400 cursor-pointer"/>
+
+                                        {!confirmVisible ? (
+
+                                            <>
+                                                <input 
+                                                    type="password" 
+                                                    name="confirmPassword"
+                                                    placeholder="Confirm your password"
+                                                    className="w-full outline-none"
+                                                    value={formData.confirmPassword}
+                                                    onChange={handleChange}
+                                                 />
+                                                <Lock size={18} className="text-gray-400 cursor-pointer"/>
+                                                <EyeClosed size={18} className="text-gray-400 cursor-pointer" onClick={() => setConfirmVisible(true)}/>
+                                            </>
+                                        ) : (
+                                            <>
+                                                 <input 
+                                                    type="text" 
+                                                    name="confirmPassword"
+                                                    placeholder="Confirm your password"
+                                                    className="w-full outline-none"
+                                                    value={formData.confirmPassword}
+                                                    onChange={handleChange}
+                                                 />
+                                                <Lock size={18} className="text-gray-400 cursor-pointer"/>
+                                                <Eye size={18} className="text-gray-400 cursor-pointer" onClick={() => setConfirmVisible(false)}/>
+                                            </>
+                                        )}
+
+
+                                        
                                     </div>
                                 </div>
 
