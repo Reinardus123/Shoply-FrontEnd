@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from "react";
 import axios from "axios";
-import {ShoppingBag, Mail, Lock, Eye, Truck, BadgeCheck, ShieldCheck} from "lucide-react";
+import {ShoppingBag, Mail, Lock, Eye, EyeClosed , Truck, BadgeCheck, ShieldCheck} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ function login(){
     const [email, setEmail] = useState("");
     const [password, SetPassword] = useState("");
     const navigate = useNavigate();
+    const [visible, setVisible] = useState("");
     
     async function handleLogin(e){
         e.preventDefault();
@@ -174,14 +175,32 @@ function login(){
                         
 
                             <div className="flex items-center border rounded-xl px-4 py-3 gap-3">
-                                
-                                <input 
-                                type="password" 
-                                placeholder="Enter your password"
-                                className="w-full outline-none"
-                                onChange={(e) => SetPassword(e.target.value)}
+
+
+                            {!visible ? (
+                                <>
+                                 <input 
+                                    type="password" 
+                                    placeholder="Enter your password"
+                                    className="w-full outline-none"
+                                    onChange={(e) => SetPassword(e.target.value)}
                                 />
-                                <Eye size={18} className="text-gray-400 cursor-pointer"/>
+                                <EyeClosed size={18} className="text-gray-400 cursor-pointer" onClick={() => setVisible(true)}/>
+                                
+                                </>
+                            ) :(
+                                <>
+                                <input 
+                                    type="text" 
+                                    placeholder="Enter your password"
+                                    className="w-full outline-none"
+                                    onChange={(e) => SetPassword(e.target.value)}
+                                />
+                                <Eye size={18} className="text-gray-400 cursor-pointer" onClick={() => setVisible(false)}/>
+                                
+                                </>
+                            )}
+                               
                             </div>
                         </div>
 
@@ -215,8 +234,6 @@ function login(){
 
                     <p className="text-center text-gray-500 mt-8">
                         Don't have an account ?
-                        
-                        
                         <span 
                             onClick={() => navigate("/register")}
                         className="text-purple-600 font-semibold cursor-pointer">

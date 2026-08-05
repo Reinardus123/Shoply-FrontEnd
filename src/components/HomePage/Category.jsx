@@ -26,7 +26,7 @@ function Category() {
     }
   }
   return (
-    <section className="px-10 mt-10">
+    <section className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">Shop By Category</h2>
         <Link to="/categories">
