@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {User, Mail, Lock, Eye, EyeClosed, ShoppingBag, Truck, ShieldCheck, BadgeCheck, Phone} from "lucide-react";
+import {User, Mail, Lock, Eye, EyeClosed, ShoppingBag, Truck, ShieldCheck, BadgeCheck, Phone, LocationEdit} from "lucide-react";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 import api from "../../api/api";
@@ -281,6 +281,7 @@ function register(){
                                             value={formData.address}
                                             onChange={handleChange} 
                                         />
+                                        <LocationEdit size={18} className="text-gray-400"/>
                                     </div>
                                 </div>
 
@@ -388,18 +389,6 @@ function register(){
                                 </button>
                         </form>
 
-                        <div className="flex items-center gap-4 my-8">
-                            <div className="h-px bg-gray-200 flex-1"></div>
-                            <span className="text-gray-500 flex-1">
-                                or continue with
-                            </span>
-                            <div className="h-px bg-gray-200 flex-1"></div>
-                        </div>
-                        <div className="space-y-4">
-                            <button className="w-full border rounded-xl py-3 hover:bg-gray-50 tranisition">
-                                Continue with google
-                            </button>
-                        </div>
                         <p className="text-center text-gray-500 mt-8">
                             Already have an account ?
                             <span 

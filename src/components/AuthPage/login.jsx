@@ -220,18 +220,6 @@ function login(){
                         </button>
                     </form>
 
-                    <div className="flex items-center gap-4 my-8">
-                        <div className="h-px bg-gray-200 flex-1"></div>
-                        or continue with
-                        <div className="h-px bg-gray-200 flex-1"></div>
-                    </div>
-
-                    <div className="space-y-4">
-                        <button className="w-full border rounded-xl py-3 hover:bg-gray-50 transition">
-                            Continue with Google
-                        </button>
-                    </div>
-
                     <p className="text-center text-gray-500 mt-8">
                         Don't have an account ?
                         <span 
